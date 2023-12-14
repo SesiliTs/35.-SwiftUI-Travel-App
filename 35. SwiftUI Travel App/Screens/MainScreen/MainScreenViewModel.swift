@@ -5,18 +5,18 @@
 //  Created by Sesili Tsikaridze on 14.12.23.
 //
 
-import Foundation
 import NetworkManager
+import SwiftUI
 
 final class MainScreenViewModel: ObservableObject {
     
     //MARK: - Properties
-    
+    @Published var navigationPath: NavigationPath = NavigationPath()
     @Published var destinations = [Destination]()
     @Published var travelTips = [TravelTip]()
     @Published var showAlert = false
 
-    private let url = "https://mocki.io/v1/d22e4580-60da-46ab-a738-b075c0936947"
+    private let url = "https://mocki.io/v1/c0d69b1a-aed8-487b-a5f4-3c146300c72e"
     private let tipsURL = "https://mocki.io/v1/15d6c865-c548-4c37-bb36-60af0cb3a100"
     
     //MARK: - Functions

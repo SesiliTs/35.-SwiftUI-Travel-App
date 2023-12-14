@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct HotelsView: View {
-    var city: Destination
+    var hotels: [Hotel]
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("HOTEL SUGGESTIONS IN \(city.name.uppercased()) 🏘️")
+            Text("HOTEL SUGGESTIONS 🏘️")
                 .font(.system(size: 18, weight: .bold))
                 .foregroundStyle(.cyan)
                 .padding(.bottom, 30)
-                ForEach(city.hotels, id: \.name) { hotel in
+                ForEach(hotels, id: \.name) { hotel in
                     VStack(alignment: .leading) {
                         HStack {
                             Text(hotel.name)
@@ -38,6 +38,8 @@ struct HotelsView: View {
                 .cornerRadius(15)
                 .shadow(radius: 2)
             Spacer()
+            
+            HomePageButton()
             
         }
         .padding(20)

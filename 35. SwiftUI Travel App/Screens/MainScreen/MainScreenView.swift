@@ -12,7 +12,7 @@ struct MainScreenView: View {
     @StateObject private var viewModel = MainScreenViewModel()
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $viewModel.navigationPath) {
             VStack(spacing: 20) {
                 Text("CHOOSE YOUR DESTINATION")
                     .font(.system(size: 18, weight: .bold))
@@ -83,6 +83,7 @@ struct MainScreenView: View {
                 viewModel.fetchData()
             }
         }
+        .environmentObject(viewModel)
     }
 }
 

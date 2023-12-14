@@ -74,7 +74,7 @@ struct ButtonsView: View {
     
     var body: some View {
         VStack() {
-            NavigationLink(destination: MustSeeScreenView(city: city)) {
+            NavigationLink(value: city.mustSeePlaces) {
                 Text("Must See")
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
@@ -82,10 +82,15 @@ struct ButtonsView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .clipped()
             }
+            .navigationDestination(for: [MustSeePlace].self) { places in
+                VStack {
+                    MustSeeScreenView(mustSeePlaces: places)
+                }
+            }
             
             
             HStack {
-                NavigationLink(destination: TransportView(city: city)) {
+                NavigationLink(value: city.transport) {
                     Text("Transport")
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
@@ -93,14 +98,24 @@ struct ButtonsView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .clipped()
                 }
+                .navigationDestination(for: Transport.self) { transport in
+                    VStack {
+                        TransportView(cityTransport: transport)
+                    }
+                }
                 
-                NavigationLink(destination: HotelsView(city: city)) {
+                NavigationLink(value: city.hotels) {
                     Text("Hotels")
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
                         .background(.cyan)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .clipped()
+                }
+                .navigationDestination(for: [Hotel].self) { hotel in
+                    VStack {
+                        HotelsView(hotels: hotel)
+                    }
                 }
                 
             }
